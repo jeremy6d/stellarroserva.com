@@ -1,0 +1,73 @@
+---
+- name: Flat Iron Crossroads
+  slug: flat-iron-crossroads
+  address: 7709 Flat Iron Road
+  city: Gloucester
+  state: VA
+  zip: '23601'
+  phone: "(804) 557-4888"
+  url: https://flatironcrossroads.com
+- name: Frisby's Restaurant and Side Bar
+  slug: frisbys-restaurant-and-side-bar
+  address: 2150 Anderson Highway
+  city: Powhatan
+  state: VA
+  zip: '23139'
+  phone: "(804) 794-7553"
+  url: https://www.facebook.com/FrisbysRestaurantAndSideBar/
+- name: Kindred Spirit Brewing's Satellite
+  slug: kindred-spirit-brewings-satellite
+  address: 1626 Ownby Ln
+  city: Richmond
+  state: VA
+  zip: '23220'
+  phone: "(804) 708-0309"
+  url: https://www.kindredspiritbrewing.com
+- name: Kindred Spirits Goochland
+  slug: kindred-spirits-goochland
+  address: 12830 W Creek Pkwy Unit J
+  city: Richmond
+  state: VA
+  zip: '23238'
+  phone: 804-708-0309
+  url: https://kindredspiritbrewing.com
+- name: Main Line Brewery
+  slug: main-line-brewery
+  address: 1603 Ownby Ln
+  city: Richmond
+  state: VA
+  zip: '23220'
+  phone: ''
+  url: ''
+- name: Ripple Ray's
+  slug: ripple-rays
+  address: 3123 W. Cary St.
+  city: Richmond
+  state: VA
+  zip: '23221'
+  phone: 804-424-3300
+  url: https://ripplerays.com
+- name: Springhill Festival Grounds
+  slug: springhill-festival-grounds
+  address: 517 W 20th St
+  city: Richmond
+  state: VA
+  zip: '23225'
+  phone: ''
+  url: https://springhillrva.org/hootenanny
+- name: The Camel
+  slug: the-camel
+  address: 1621 W. BROAD STREET
+  city: Richmond
+  state: VA
+  zip: '23220'
+  phone: ''
+  url: https://www.thecamel.org
+- name: Tripping Billie's
+  slug: tripping-billies
+  address: 120 E Broad St
+  city: Blackstone
+  state: VA
+  zip: '23824'
+  phone: "(434) 264-3050"
+  url: https://www.trippinbilliesbrewery.com

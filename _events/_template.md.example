@@ -1,0 +1,10 @@
+---
+title: Show Title
+date: 'YYYY-MM-DD'
+start_time: '19:00'
+end_time: '22:00'
+venue: main-line-brewery
+timezone: America/New_York
+---
+
+Optional: Add a short description or note here (e.g. "Special early show!").

@@ -1,0 +1,56 @@
+---
+layout: default
+---
+
+<section class="hero">
+  <video class="hero-video" autoplay muted loop playsinline poster="{{ '/assets/images/cropped-2474215-scaled-1.jpg' | relative_url }}">
+    <source src="{{ '/assets/video/webclip_sr_dot_com_SMALL.mp4' | relative_url }}" type="video/mp4">
+  </video>
+  <div class="hero-overlay">
+    <div class="container hero-content">
+      <img src="{{ '/assets/images/sr_logo_rva.png' | relative_url }}" alt="{{ site.title }}" class="hero-logo">
+      <p class="hero-tagline">{{ site.description }}</p>
+    </div>
+  </div>
+</section>
+
+{% assign sorted_events = site.events | sort: 'date' %}
+{% assign now = 'now' | date: '%Y-%m-%d' %}
+{% assign upcoming = '' | split: '' %}
+{% for event in sorted_events %}
+  {% assign event_date_str = event.date | date: '%Y-%m-%d' %}
+  {% if event_date_str >= now %}
+    {% assign upcoming = upcoming | push: event %}
+  {% endif %}
+{% endfor %}
+
+{% if upcoming.size > 0 %}
+<section class="upcoming-section">
+  <div class="container">
+    <h2>Upcoming Shows</h2>
+    <div class="events-list">
+      {% for event in upcoming limit:3 %}
+        {% include event-card.html event=event %}
+      {% endfor %}
+    </div>
+    {% if upcoming.size > 3 %}
+      <div class="section-cta">
+        <a href="{{ '/events/' | relative_url }}" class="btn">View All Shows</a>
+      </div>
+    {% endif %}
+  </div>
+</section>
+{% endif %}
+
+<section class="bio-section">
+  <div class="container">
+    <div class="bio-layout">
+      <div class="bio-image">
+        <img src="{{ '/assets/images/stellar_rose-edited-scaled.jpeg' | relative_url }}" alt="Stellar Rose band photo">
+      </div>
+      <div class="bio-text">
+        {{ content }}
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,24 @@
+title: Stellar Rose
+description: "Richmond's Premier Grateful Dead Tribute Band"
+baseurl: ""
+url: "https://stellarroserva.org"
+
+social:
+  youtube: https://www.youtube.com/@stellarrose3838
+  facebook: https://www.facebook.com/steallarrosemusic
+
+collections:
+  events:
+    output: false
+    sort_by: date
+
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+
+exclude:
+  - _scripts
+  - stellarrose.WordPress.2026-02-17.xml
+  - Gemfile
+  - Gemfile.lock
+  - README.md

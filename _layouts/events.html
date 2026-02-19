@@ -1,0 +1,49 @@
+---
+layout: default
+---
+
+<section class="page-header">
+  <div class="container">
+    <h1>{{ page.title }}</h1>
+  </div>
+</section>
+
+<section class="events-page-section">
+  <div class="container">
+    {{ content }}
+
+    {% assign sorted_events = site.events | sort: 'date' %}
+    {% assign now = 'now' | date: '%Y-%m-%d' %}
+
+    <h2>Upcoming</h2>
+    {% assign has_upcoming = false %}
+    <div class="events-list">
+      {% for event in sorted_events %}
+        {% assign event_date_str = event.date | date: '%Y-%m-%d' %}
+        {% if event_date_str >= now %}
+          {% assign has_upcoming = true %}
+          {% include event-card.html event=event %}
+        {% endif %}
+      {% endfor %}
+    </div>
+    {% unless has_upcoming %}
+      <p class="no-events">No upcoming shows scheduled. Check back soon!</p>
+    {% endunless %}
+
+    <h2>Past Shows</h2>
+    {% assign has_past = false %}
+    <div class="events-list past-events">
+      {% assign reversed_events = sorted_events | reverse %}
+      {% for event in reversed_events %}
+        {% assign event_date_str = event.date | date: '%Y-%m-%d' %}
+        {% if event_date_str < now %}
+          {% assign has_past = true %}
+          {% include event-card.html event=event %}
+        {% endif %}
+      {% endfor %}
+    </div>
+    {% unless has_past %}
+      <p class="no-events">No past shows yet.</p>
+    {% endunless %}
+  </div>
+</section>

@@ -1,0 +1,58 @@
+{% assign venue = nil %}
+{% for v in site.data.venues %}
+  {% if v.slug == event.venue %}
+    {% assign venue = v %}
+    {% break %}
+  {% endif %}
+{% endfor %}
+
+<div class="event-card">
+  <div class="event-date">
+    <span class="event-month">{{ event.date | date: '%b' }}</span>
+    <span class="event-day">{{ event.date | date: '%d' }}</span>
+    <span class="event-year">{{ event.date | date: '%Y' }}</span>
+  </div>
+  <div class="event-details">
+    <h3 class="event-title">{{ event.title }}</h3>
+    {% if venue %}
+      <p class="event-venue">
+        {% if venue.url != '' %}
+          <a href="{{ venue.url }}" target="_blank" rel="noopener">{{ venue.name }}</a>
+        {% else %}
+          {{ venue.name }}
+        {% endif %}
+      </p>
+      <p class="event-location">{{ venue.address }}, {{ venue.city }}, {{ venue.state }} {{ venue.zip }}</p>
+    {% endif %}
+    <p class="event-time">
+      {% assign start_h = event.start_time | split: ':' | first | plus: 0 %}
+      {% assign start_m = event.start_time | split: ':' | last %}
+      {% if start_h >= 13 %}
+        {% assign display_h = start_h | minus: 12 %}
+        {{ display_h }}:{{ start_m }} PM
+      {% elsif start_h == 12 %}
+        12:{{ start_m }} PM
+      {% elsif start_h == 0 %}
+        12:{{ start_m }} AM
+      {% else %}
+        {{ start_h }}:{{ start_m }} AM
+      {% endif %}
+      &ndash;
+      {% assign end_h = event.end_time | split: ':' | first | plus: 0 %}
+      {% assign end_m = event.end_time | split: ':' | last %}
+      {% if end_h >= 13 %}
+        {% assign display_h = end_h | minus: 12 %}
+        {{ display_h }}:{{ end_m }} PM
+      {% elsif end_h == 12 %}
+        12:{{ end_m }} PM
+      {% elsif end_h == 0 %}
+        12:{{ end_m }} AM
+      {% else %}
+        {{ end_h }}:{{ end_m }} AM
+      {% endif %}
+    </p>
+    {% if event.content and event.content != '' %}
+      <p class="event-description">{{ event.content }}</p>
+    {% endif %}
+  </div>
+</div>
