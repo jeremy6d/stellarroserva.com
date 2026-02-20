@@ -114,6 +114,20 @@ h1, h2, h3, h4 {
   border-bottom-color: var(--accent);
 }
 
+.nav-links a.nav-icon {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem;
+}
+
+.nav-links a.nav-icon:hover {
+  border-bottom-color: transparent;
+}
+
+.nav-icon-label {
+  display: none;
+}
+
 /* Mobile nav toggle */
 .nav-toggle {
   display: none;
@@ -161,6 +175,14 @@ h1, h2, h3, h4 {
 
   .site-header .nav-links.open {
     display: flex;
+  }
+
+  .site-header .nav-icon-label {
+    display: inline;
+  }
+
+  .site-header .nav-links a.nav-icon {
+    gap: 0.5rem;
   }
 
   .site-title {
