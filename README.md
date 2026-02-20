@@ -1,6 +1,6 @@
 # Stellar Rose
 
-Jekyll site for Stellar Rose — Richmond's Premier Grateful Dead Tribute Band.
+Jekyll site for Stellar Rose — Richmond's Premier Grateful Dead and Jerry Garcia Band Tribute.
 
 ## Setup
 
