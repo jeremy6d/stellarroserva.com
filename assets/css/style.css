@@ -249,6 +249,18 @@ h1, h2, h3, h4 {
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
 }
 
+.bio-video {
+  margin-top: 1.5rem;
+}
+
+.bio-video iframe {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  max-width: 560px;
+  border-radius: 8px;
+  border: none;
+}
+
 .bio-text p {
   font-size: 1.05rem;
   color: var(--text-secondary);
