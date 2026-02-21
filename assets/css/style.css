@@ -199,7 +199,7 @@ h1, h2, h3, h4 {
   justify-content: center;
   margin-top: 70px;
   overflow: hidden;
-  background: #000;
+  background: #000 url("../images/cropped-2474215-scaled-1.jpg") center / cover no-repeat;
 }
 
 .hero-video {
@@ -213,6 +213,11 @@ h1, h2, h3, h4 {
   transform: translate(-50%, -50%);
   object-fit: cover;
   z-index: 0;
+  transition: opacity 0.5s ease;
+}
+.hero-video.hero-video-ended {
+  opacity: 0;
+  pointer-events: none;
 }
 
 .hero-overlay {
@@ -251,28 +256,32 @@ h1, h2, h3, h4 {
   text-transform: uppercase;
 }
 
-.hero-unmute-btn {
+.hero-video-ctrl {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  margin-top: 1.5rem;
-  padding: 0.5rem 1rem;
-  font-family: var(--font-body);
-  font-size: 0.9rem;
-  color: var(--text-primary);
-  background: var(--accent-dim);
-  border: 1px solid var(--accent);
-  border-radius: 4px;
+  justify-content: center;
+  margin-top: 1.25rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  font-size: 1.15rem;
+  color: rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
   cursor: pointer;
-  transition: background 0.2s, border-color 0.2s;
+  transition: color 0.2s, background 0.2s, border-color 0.2s;
 }
-.hero-unmute-btn:hover {
-  background: var(--accent);
-  color: var(--bg-dark);
+.hero-video-ctrl:hover {
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.14);
+  border-color: rgba(255, 255, 255, 0.25);
 }
-.hero-unmute-btn.hero-unmute-done {
-  cursor: default;
-  opacity: 0.9;
+.hero-video-ctrl:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
 }
 
 /* ---- Bio Section ---- */

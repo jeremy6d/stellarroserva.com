@@ -3,16 +3,15 @@ layout: default
 ---
 
 <section class="hero">
-  <video id="hero-video" class="hero-video" autoplay muted loop playsinline poster="{{ '/assets/images/cropped-2474215-scaled-1.jpg' | relative_url }}">
+  <video id="hero-video" class="hero-video" autoplay muted playsinline poster="{{ '/assets/images/cropped-2474215-scaled-1.jpg' | relative_url }}">
     <source src="{{ '/assets/video/bgsr.mp4' | relative_url }}" type="video/mp4">
   </video>
   <div class="hero-overlay">
     <div class="container hero-content">
       <img src="{{ '/assets/images/sr_logo_rva.png' | relative_url }}" alt="{{ site.title }}" class="hero-logo">
       <p class="hero-tagline">{{ site.description }}</p>
-      <button type="button" class="hero-unmute-btn" id="hero-unmute" aria-label="Turn on music">
-        <span class="hero-unmute-icon" aria-hidden="true">🔇</span>
-        <span class="hero-unmute-label">Turn on music</span>
+      <button type="button" class="hero-video-ctrl" id="hero-video-ctrl" title="Play video" aria-label="Play video">
+        <span class="hero-video-ctrl-icon" aria-hidden="true">▶</span>
       </button>
     </div>
   </div>
@@ -21,16 +20,39 @@ layout: default
 <script>
 (function() {
   var video = document.getElementById('hero-video');
-  var btn = document.getElementById('hero-unmute');
-  if (!video || !btn) return;
+  var btn = document.getElementById('hero-video-ctrl');
+  var icon = btn && btn.querySelector('.hero-video-ctrl-icon');
+  if (!video || !btn || !icon) return;
+
+  function showPlayButton() {
+    icon.textContent = '▶';
+    btn.title = 'Play video';
+    btn.setAttribute('aria-label', 'Play video');
+  }
+  function showSoundButton() {
+    icon.textContent = video.muted ? '🔇' : '🔊';
+    btn.title = 'Toggle audio';
+    btn.setAttribute('aria-label', video.muted ? 'Turn on music' : 'Turn off music');
+  }
+
   btn.addEventListener('click', function() {
-    video.muted = false;
-    btn.querySelector('.hero-unmute-label').textContent = 'Music on';
-    btn.querySelector('.hero-unmute-icon').textContent = '🔊';
-    btn.setAttribute('aria-label', 'Music on');
-    btn.disabled = true;
-    btn.classList.add('hero-unmute-done');
+    if (video.paused || video.ended) {
+      video.classList.remove('hero-video-ended');
+      video.play();
+    } else {
+      video.muted = !video.muted;
+      showSoundButton();
+    }
   });
+
+  video.addEventListener('play', showSoundButton);
+  video.addEventListener('pause', showPlayButton);
+  video.addEventListener('ended', function() {
+    video.classList.add('hero-video-ended');
+    showPlayButton();
+  });
+
+  if (video.paused || video.ended) showPlayButton(); else showSoundButton();
 })();
 </script>
 
