@@ -3,16 +3,36 @@ layout: default
 ---
 
 <section class="hero">
-  <video class="hero-video" autoplay muted loop playsinline poster="{{ '/assets/images/cropped-2474215-scaled-1.jpg' | relative_url }}">
-    <source src="{{ '/assets/video/webclip_sr_dot_com_SMALL.mp4' | relative_url }}" type="video/mp4">
+  <video id="hero-video" class="hero-video" autoplay muted loop playsinline poster="{{ '/assets/images/cropped-2474215-scaled-1.jpg' | relative_url }}">
+    <source src="{{ '/assets/video/bgsr.mp4' | relative_url }}" type="video/mp4">
   </video>
   <div class="hero-overlay">
     <div class="container hero-content">
       <img src="{{ '/assets/images/sr_logo_rva.png' | relative_url }}" alt="{{ site.title }}" class="hero-logo">
       <p class="hero-tagline">{{ site.description }}</p>
+      <button type="button" class="hero-unmute-btn" id="hero-unmute" aria-label="Turn on music">
+        <span class="hero-unmute-icon" aria-hidden="true">🔇</span>
+        <span class="hero-unmute-label">Turn on music</span>
+      </button>
     </div>
   </div>
 </section>
+
+<script>
+(function() {
+  var video = document.getElementById('hero-video');
+  var btn = document.getElementById('hero-unmute');
+  if (!video || !btn) return;
+  btn.addEventListener('click', function() {
+    video.muted = false;
+    btn.querySelector('.hero-unmute-label').textContent = 'Music on';
+    btn.querySelector('.hero-unmute-icon').textContent = '🔊';
+    btn.setAttribute('aria-label', 'Music on');
+    btn.disabled = true;
+    btn.classList.add('hero-unmute-done');
+  });
+})();
+</script>
 
 {% assign sorted_events = site.events | sort: 'date' %}
 {% assign now = 'now' | date: '%Y-%m-%d' %}

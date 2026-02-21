@@ -251,6 +251,30 @@ h1, h2, h3, h4 {
   text-transform: uppercase;
 }
 
+.hero-unmute-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+  padding: 0.5rem 1rem;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  background: var(--accent-dim);
+  border: 1px solid var(--accent);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+}
+.hero-unmute-btn:hover {
+  background: var(--accent);
+  color: var(--bg-dark);
+}
+.hero-unmute-btn.hero-unmute-done {
+  cursor: default;
+  opacity: 0.9;
+}
+
 /* ---- Bio Section ---- */
 .bio-section {
   padding: 5rem 0;
