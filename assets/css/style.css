@@ -316,6 +316,11 @@ h1, h2, h3, h4 {
   border: none;
 }
 
+.bio-text h2 {
+  margin-top: 0;
+  margin-bottom: 1.25rem;
+}
+
 .bio-text p {
   font-size: 1.05rem;
   color: var(--text-secondary);
