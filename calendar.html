@@ -1,0 +1,23 @@
+---
+# Subscribe: {{ site.url }}/calendar.ics
+layout: null
+permalink: /calendar.ics
+---
+{% assign sorted = site.events | sort: 'date' %}BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//{{ site.title | strip }}//Events//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:{{ site.title }} Shows
+X-WR-TIMEZONE:America/New_York
+{% for event in sorted %}{% assign venue = nil %}{% for v in site.data.venues %}{% if v.slug == event.venue %}{% assign venue = v %}{% break %}{% endif %}{% endfor %}{% assign tz = event.timezone | default: 'America/New_York' %}{% assign sh = event.start_time | split: ':' | first | strip %}{% assign sm = event.start_time | split: ':' | last | strip | default: '00' %}{% assign eh = event.end_time | split: ':' | first | strip %}{% assign em = event.end_time | split: ':' | last | strip | default: '00' %}{% assign sh = sh | prepend: '00' | slice: -2, 2 %}{% assign sm = sm | prepend: '00' | slice: -2, 2 %}{% assign eh = eh | prepend: '00' | slice: -2, 2 %}{% assign em = em | prepend: '00' | slice: -2, 2 %}{% assign start_mins = sh | plus: 0 | times: 60 | plus: sm %}{% assign end_mins = eh | plus: 0 | times: 60 | plus: em %}{% assign end_day_ts = event.date | date: '%s' | plus: 0 %}{% if end_mins < start_mins %}{% assign end_day_ts = end_day_ts | plus: 86400 %}{% endif %}{% assign end_ymd = end_day_ts | date: '%Y%m%d' %}{% assign ds = event.date | date: '%Y%m%d' %}{% assign summary = event.title | append: ' — Stellar Rose' %}{% if venue %}{% assign summary = summary | append: ' @ ' | append: venue.name %}{% endif %}{% assign summary = summary | replace: '\', '\\' | replace: ';', '\;' | replace: ',', '\,' %}{% assign loc = '' %}{% if venue %}{% assign loc = venue.address | append: ', ' | append: venue.city | append: ', ' | append: venue.state | append: ' ' | append: venue.zip %}{% assign loc = loc | replace: '\', '\\' | replace: ';', '\;' | replace: ',', '\,' %}{% endif %}{% assign desc = event.content | markdownify | strip_html | strip | replace: ',', '\,' | replace: ';', '\;' | replace: '\', '\\' %}BEGIN:VEVENT
+UID:{{ event.slug }}-{{ ds }}@stellarroserva.com
+DTSTAMP:{{ site.time | date: '%Y%m%dT%H%M%SZ' }}
+DTSTART;TZID={{ tz }}:{{ ds }}T{{ sh }}{{ sm }}00
+DTEND;TZID={{ tz }}:{{ end_ymd }}T{{ eh }}{{ em }}00
+SUMMARY:{{ summary }}
+{% if loc != '' %}LOCATION:{{ loc }}
+{% endif %}{% if desc != '' %}DESCRIPTION:{{ desc }}
+{% endif %}URL:{{ site.url }}{{ site.baseurl }}/events/
+END:VEVENT
+{% endfor %}END:VCALENDAR
