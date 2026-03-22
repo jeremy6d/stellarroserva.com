@@ -1,5 +1,5 @@
 ---
-title: Tripping Billie's
+title: Tripping Billie's Craft Brewery
 date: '2026-06-27'
 start_time: '18:00'
 end_time: '21:00'
