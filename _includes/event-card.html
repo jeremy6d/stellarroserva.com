@@ -52,7 +52,7 @@
       {% endif %}
     </p>
     {% if event.content and event.content != '' %}
-      <p class="event-description">{{ event.content }}</p>
+      <div class="event-description">{{ event.content | markdownify }}</div>
     {% endif %}
   </div>
 </div>
