@@ -3,7 +3,7 @@ layout: default
 ---
 
 <section class="hero">
-  <video id="hero-video" class="hero-video" autoplay muted playsinline poster="{{ '/assets/images/cropped-2474215-scaled-1.jpg' | relative_url }}">
+  <video id="hero-video" class="hero-video" autoplay playsinline poster="{{ '/assets/images/cropped-2474215-scaled-1.jpg' | relative_url }}">
     <source src="{{ '/assets/video/bgsr.mp4' | relative_url }}" type="video/mp4">
   </video>
   <div class="hero-overlay">
@@ -35,9 +35,18 @@ layout: default
     btn.setAttribute('aria-label', video.muted ? 'Turn on music' : 'Turn off music');
   }
 
+  function startPlayback() {
+    video.muted = false;
+    return video.play().catch(function() {
+      video.muted = true;
+      return video.play();
+    });
+  }
+
   btn.addEventListener('click', function() {
     if (video.paused || video.ended) {
       video.classList.remove('hero-video-ended');
+      video.muted = false;
       video.play();
     } else {
       video.muted = !video.muted;
@@ -52,7 +61,10 @@ layout: default
     showPlayButton();
   });
 
-  if (video.paused || video.ended) showPlayButton(); else showSoundButton();
+  startPlayback().then(function() {
+    if (video.paused || video.ended) showPlayButton();
+    else showSoundButton();
+  });
 })();
 </script>
 
