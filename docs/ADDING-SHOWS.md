@@ -36,6 +36,7 @@ timezone: America/New_York
 | `end_time` | `'22:00'` | 24-hour time (10:00 PM) |
 | `venue` | `main-line-brewery` | **Slug** from `_data/venues.yml` (see below) |
 | `timezone` | `America/New_York` | For future use |
+| `cancelled` | `true` | Optional. Shows a large red **Show Cancelled** banner on the event card |
 
 **Optional:** Add body text below the `---` for a short description (e.g. "Special early show!").
 

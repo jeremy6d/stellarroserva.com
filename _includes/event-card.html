@@ -6,7 +6,13 @@
   {% endif %}
 {% endfor %}
 
-<div class="event-card">
+<div class="event-card{% if event.cancelled %} event-card--cancelled{% endif %}">
+  {% if event.cancelled %}
+  <p class="event-cancelled-banner" role="status">
+    <span class="event-cancelled-banner-label">Show Cancelled</span>
+  </p>
+  {% endif %}
+  <div class="event-card-content">
   <div class="event-date">
     <span class="event-month">{{ event.date | date: '%b' }}</span>
     <span class="event-day">{{ event.date | date: '%d' }}</span>
@@ -54,5 +60,6 @@
     {% if event.content and event.content != '' %}
       <div class="event-description">{{ event.content | markdownify }}</div>
     {% endif %}
+  </div>
   </div>
 </div>
